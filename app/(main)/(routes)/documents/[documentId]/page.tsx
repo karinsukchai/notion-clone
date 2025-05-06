@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 const DocumentIdPage = () => {
   const params = useParams();
 
-  return <div>DocumentIdPage</div>;
+  return <div></div>;
 };
 
 export default DocumentIdPage;
