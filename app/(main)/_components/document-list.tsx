@@ -81,8 +81,7 @@ export const DocumentList = ({
             expanded={expaned[document._id]}
           />
           {expaned[document._id] && (
-            <DocumentList parentDocumentId={document._id}
-            level={level+1}/>
+            <DocumentList parentDocumentId={document._id} level={level + 1} />
           )}
         </div>
       ))}
