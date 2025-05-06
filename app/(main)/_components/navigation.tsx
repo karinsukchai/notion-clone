@@ -1,15 +1,31 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, Menu, Mouse } from "lucide-react";
+import {
+  ChevronsLeft,
+  Menu,
+  Mouse,
+  PlusCircle,
+  Search,
+  Settings,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
+
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+
+import { Item } from "./item";
 import { UserItem } from "./user-item";
+import { toast } from "sonner";
+import { DocumentList } from "./document-list";
 
 export const Navigation = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width:768px)");
+
+  const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef<boolean>(false);
   const sidebarRef = useRef<HTMLElementTagNameMap["aside"]>(null);
@@ -28,11 +44,11 @@ export const Navigation = () => {
   useEffect(() => {
     if (isMobile) {
       collapse();
-    } 
-  }, [pathname,isMobile]);
+    }
+  }, [pathname, isMobile]);
 
   const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     event.preventDefault();
     event.stopPropagation();
@@ -70,7 +86,7 @@ export const Navigation = () => {
       sidebarRef.current.style.width = isMobile ? "100%" : "240px";
       navbarRef.current.style.setProperty(
         "width",
-        isMobile ? "0" : "calc(100%-240px)"
+        isMobile ? "0" : "calc(100%-240px)",
       );
       navbarRef.current.style.setProperty("left", isMobile ? "100%" : "240px");
       setTimeout(() => setIsResetting(false), 300);
@@ -89,6 +105,16 @@ export const Navigation = () => {
     }
   };
 
+  const handleCreate = () => {
+    const promise = create({ title: "untitled" });
+
+    toast.promise(promise, {
+      loading: "Creating a new note...",
+      success: "New note created!",
+      error: "Failed to Create a new note.",
+    });
+  };
+
   return (
     <>
       <aside
@@ -96,7 +122,7 @@ export const Navigation = () => {
         className={cn(
           "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]",
           isResetting && "transition-all ease-in-out duration-300",
-          isMobile && "w-0"
+          isMobile && "w-0",
         )}
       >
         <div
@@ -104,16 +130,19 @@ export const Navigation = () => {
           role="button"
           className={cn(
             "cursor-pointer h-6 w-6 text-muted-foreground rounded-sm  hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute   top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
-            isMobile && "opacity-100"
+            isMobile && "opacity-100",
           )}
         >
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
-         <UserItem/>
+          <UserItem />
+          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
-          <p>Documents</p>
+          <DocumentList />
         </div>
         <div
           onMouseDown={handleMouseDown}
@@ -127,7 +156,7 @@ export const Navigation = () => {
         className={cn(
           "absolute top-0 z-[99999] left-60 w-[calc100%-240px]",
           isResetting && "transition-all ease-in-out duration-300",
-          isMobile && "left-0 w-full"
+          isMobile && "left-0 w-full",
         )}
       >
         <nav className="bg-transparent px-3 py-2 w-full">
