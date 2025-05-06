@@ -1,14 +1,13 @@
 import { create } from "zustand";
-type SearchStroe = {
+
+type SettingsStore = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  toggle: () => void;
 };
 
-export const useSearch = create<SearchStroe>((set, get) => ({
+export const useSettings = create<SettingsStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
-  toggle: () => set({ isOpen: !get().isOpen }),
 }));

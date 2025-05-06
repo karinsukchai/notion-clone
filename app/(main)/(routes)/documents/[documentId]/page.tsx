@@ -1,0 +1,10 @@
+"use client";
+import { useParams } from "next/navigation";
+
+const DocumentIdPage = () => {
+  const params = useParams();
+
+  return <div>DocumentIdPage</div>;
+};
+
+export default DocumentIdPage;
