@@ -7,7 +7,7 @@ import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
-import  Link  from "next/link";
+import Link from "next/link";
 
 export const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -17,7 +17,7 @@ export const Navbar = () => {
     <div
       className={cn(
         "z-50 bg-background fixed top-0 flex items-center w-full p-6",
-        scrolled && "border-b shadow-sm"
+        scrolled && "border-b shadow-sm",
       )}
     >
       Logo
@@ -39,11 +39,8 @@ export const Navbar = () => {
         )}
         {isAuthenticated && !isLoading && (
           <>
-         
             <Button variant="ghost" size="sm" asChild>
-              <Link href="/documents">
-                Enter Jotion
-              </Link>
+              <Link href="/documents">Enter Jotion</Link>
             </Button>
             <UserButton />
           </>

@@ -28,19 +28,18 @@ export const Heading = () => {
 
       {isAuthenticated && !isLoading && (
         <Button className="cursor-pointer" asChild>
-            <Link href="/documents">
-            
-          Enter Jotion
-          <ArrowRight className="h-4 w-4 ml-2" />
+          <Link href="/documents">
+            Enter Jotion
+            <ArrowRight className="h-4 w-4 ml-2" />
           </Link>
         </Button>
       )}
       {!isAuthenticated && !isLoading && (
         <SignInButton mode="modal">
-            <Button className="cursor-pointer">
+          <Button className="cursor-pointer">
             Get Jotion Free
             <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
+          </Button>
         </SignInButton>
       )}
     </div>
