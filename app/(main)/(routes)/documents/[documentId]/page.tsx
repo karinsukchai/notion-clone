@@ -1,6 +1,8 @@
 "use client";
 import { Cover } from "@/app/(main)/_components/Cover";
-import { Editor } from "@/components/Editor";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
+
 import { Toolbar } from "@/components/Toolbar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
@@ -11,19 +13,25 @@ import React from "react";
 
 const DocumentIdPage = () => {
   const params = useParams();
-
+  const Editor = useMemo(
+    () =>
+      dynamic(() => import("@/components/Editor"), {
+        ssr: false,
+      }),
+    []
+  );
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
   });
 
   const update = useMutation(api.documents.update);
 
-  const onChange = (content:string) => {
+  const onChange = (content: string) => {
     update({
       id: params.documentId as Id<"documents">,
       content,
     });
-  }
+  };
 
   if (document === undefined) {
     return (
@@ -50,10 +58,7 @@ const DocumentIdPage = () => {
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
-        <Editor
-        onChange={onChange}
-        initialContent={document.content}
-        />
+        <Editor onChange={onChange} initialContent={document.content} />
       </div>
     </div>
   );

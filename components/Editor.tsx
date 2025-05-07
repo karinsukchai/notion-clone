@@ -15,7 +15,7 @@ interface EditorProps {
   editable?: boolean;
 }
 
-export const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
+const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
   
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
@@ -50,3 +50,4 @@ export const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
     />
   );
 };
+export default Editor;
