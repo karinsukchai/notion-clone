@@ -166,12 +166,12 @@ const SingleImageDropzone = React.forwardRef<
 
   return (
     <div className="flex flex-col  items-center relative">
-      {disabled && (
+      {/* {disabled && (
         <div className='flex items-center justify-center absolute
         inset-y-0 h-full w-full bg-background/80 z-50'>
           <Spinner size="lg"/>
         </div>
-      )}
+      )} */}
       <div
         {...getRootProps({
           className: dropZoneClassName,
