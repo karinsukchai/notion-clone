@@ -2,10 +2,10 @@ import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ui/providers/theme-provider";
-import { ConvexProvider } from "@/components/ui/providers/convex-provider";
-import { ModalProvider } from "@/components/ui/providers/modal-provider";
-
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ConvexProvider } from "@/components/providers/convex-provider";
+import { ModalProvider } from "@/components/providers/modal-provider";
+import { EdgeStoreProvider } from '@/lib/edgestore';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ConvexProvider>
+        <EdgeStoreProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -43,6 +44,7 @@ export default function RootLayout({
             <ModalProvider />
             {children}
           </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexProvider>
       </body>
     </html>
