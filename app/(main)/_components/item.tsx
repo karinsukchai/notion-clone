@@ -57,7 +57,9 @@ export const Item = ({
   const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
     if (!id) return;
-    const promise = archive({ id });
+    const promise = archive({ id }).then(() => {
+      router.push("/documents");
+    });
 
     toast.promise(promise, {
       loading: "Moving to trash...",
@@ -67,7 +69,7 @@ export const Item = ({
   };
 
   const handleExpand = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     event.stopPropagation();
     onExpand?.();
@@ -81,8 +83,8 @@ export const Item = ({
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
-      },
+         router.push(`/documents/${documentId}`);
+      }
     );
     toast.promise(promise, {
       loading: "Creating a new note...",
@@ -100,7 +102,7 @@ export const Item = ({
       style={{ paddingLeft: level ? `${level * 12 + 12}px` : "12px" }}
       className={cn(
         "cursor-pointer group min-h-[27px] text-sm py-1 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-medium",
-        active && "bg-primary/5 text-primary",
+        active && "bg-primary/5 text-primary"
       )}
     >
       {!!id && (
