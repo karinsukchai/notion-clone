@@ -18,7 +18,7 @@ const DocumentIdPage = () => {
       dynamic(() => import("@/components/Editor"), {
         ssr: false,
       }),
-    []
+    [],
   );
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
@@ -58,7 +58,11 @@ const DocumentIdPage = () => {
       <Cover preview url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar preview initialData={document} />
-        <Editor editable={false} onChange={onChange} initialContent={document.content} />
+        <Editor
+          editable={false}
+          onChange={onChange}
+          initialContent={document.content}
+        />
       </div>
     </div>
   );
