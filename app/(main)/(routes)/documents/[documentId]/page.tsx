@@ -19,7 +19,7 @@ const DocumentIdPage = () => {
       dynamic(() => import("@/components/Editor"), {
         ssr: false,
       }),
-    [],
+    []
   );
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
