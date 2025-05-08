@@ -1,5 +1,5 @@
 "use client";
-import { Cover } from "@/app/(main)/_components/Cover";
+
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
@@ -10,6 +10,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 import React from "react";
+import { Cover } from "@/components/Cover";
 
 const DocumentIdPage = () => {
   const params = useParams();
@@ -49,9 +50,7 @@ const DocumentIdPage = () => {
     );
   }
 
-  if (document === null) {
-    return <div>Not found</div>;
-  }
+
 
   return (
     <div className="pb-40">

@@ -22,7 +22,6 @@ const DROPZONE_VARIANTS = {
   reject: 'border-destructive bg-destructive/10',
 };
 
-import { Spinner } from '@/components/spinner';
 
 /**
  * Props for the SingleImageDropzone component.

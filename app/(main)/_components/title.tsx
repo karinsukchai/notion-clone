@@ -8,8 +8,6 @@ import { Input } from "@/components/ui/input";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
-import { Nova_Flat } from "next/font/google";
-import { NfcIcon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface TitleProps {

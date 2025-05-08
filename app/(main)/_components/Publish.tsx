@@ -6,11 +6,10 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-import { use, useState } from "react";
+import {  useState } from "react";
 import { useOrigin } from "@/hooks/use-origin";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { set } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Check, Copy, Globe } from "lucide-react";

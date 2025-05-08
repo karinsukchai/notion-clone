@@ -1,5 +1,5 @@
 "use client";
-import { Cover } from "@/app/(main)/_components/Cover";
+import { Cover } from "@/components/Cover";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
